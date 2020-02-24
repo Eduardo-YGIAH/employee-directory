@@ -1,16 +1,33 @@
 import React from 'react';
+import CardUser from './CardUser';
+import ErrorModal from './ErrorModal';
 
 const UserDetails = props => {
-  console.log(props.match.params.id);
-  console.log(props.employees[0].id);
   let employee = props.employees.find(employee => props.match.params.id === employee.id);
 
-  return (
-    <>
-      <div>User Id: {employee.id}</div>
-      <div>First Name: {employee.firstName}</div>
-    </>
-  );
+  if (!employee) {
+    return <ErrorModal />;
+  } else {
+    return (
+      <>
+        <div className='ui container centered grid' style={{ marginTop: '10px' }}>
+          <CardUser
+            firstName={employee.firstName}
+            lastName={employee.lastName}
+            jobTitle={employee.jobTitle}
+            avatar={employee.avatar}
+            startingDate={employee.startingDate}
+            score={employee.score}
+            salary={employee.salary}
+            id={employee.id}
+            address={employee.address}
+            phone={employee.phone}
+            email={employee.email}
+          />
+        </div>
+      </>
+    );
+  }
 };
 
 export default UserDetails;

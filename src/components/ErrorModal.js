@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 
 const ErrorModal = () => (
-  <Modal basic size='small'>
+  <Modal basic size='small' open={true}>
     <Header icon='ban' content='Bad Request' />
     <Modal.Content>
       <p>You seem to be going to the unknown! Better go back.</p>

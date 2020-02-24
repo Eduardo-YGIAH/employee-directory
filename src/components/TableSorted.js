@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
-import CardUser from './CardUser';
+import { Table, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 import _ from 'lodash';
 
 class TableSorted extends Component {
@@ -31,8 +32,6 @@ class TableSorted extends Component {
 
   render() {
     const { column, data, direction } = this.state;
-    console.log(this.props.id);
-    console.log(data);
     return (
       <Table sortable celled fixed>
         <Table.Header>
@@ -67,19 +66,13 @@ class TableSorted extends Component {
             ({ firstName, lastName, jobTitle, avatar, startingDate, id, score, salary, address, phone, email }) => (
               <Table.Row key={id}>
                 <Table.Cell>
-                  <CardUser
-                    firstName={firstName}
-                    lastName={lastName}
-                    jobTitle={jobTitle}
-                    avatar={avatar}
-                    startingDate={startingDate}
-                    score={score}
-                    salary={salary}
-                    id={id}
-                    address={address}
-                    phone={phone}
-                    email={email}
-                  />
+                  <div className='ui one buttons'>
+                    <Link to={`/${id}`}>
+                      <Button basic color='green'>
+                        View Details
+                      </Button>
+                    </Link>
+                  </div>
                 </Table.Cell>
                 <Table.Cell>{firstName}</Table.Cell>
                 <Table.Cell>{lastName}</Table.Cell>

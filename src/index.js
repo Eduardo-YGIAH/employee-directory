@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import TableSorted from './components/TableSorted';
 import HeaderBlock from './components/HeaderBlock';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UserDetails from './components/UserDetails';
 import Faker from 'faker';
 import { uuid } from 'uuidv4';
@@ -25,10 +25,14 @@ function App() {
   return (
     <>
       <HeaderBlock />
-      <Router>
-        <Route exact path='/' render={props => <TableSorted {...props} employees={employees} />} />
-        <Route path='/:id' render={props => <UserDetails {...props} employees={employees} />} />
-      </Router>
+      <div className='ui container'>
+        <Router>
+          <Switch>
+            <Route exact path='/:id' render={props => <UserDetails {...props} employees={employees} />} />
+            <Route exact path='/' render={props => <TableSorted {...props} employees={employees} />} />
+          </Switch>
+        </Router>
+      </div>
     </>
   );
 }
